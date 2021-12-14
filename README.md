@@ -30,18 +30,18 @@ Also, the Hermes relayer is installed automatically.
 (Takes some time 5m?)
 
 Hermes
-- v0.6.2
+- v0.9.0
 
 Chain list
-- gaiad v5.0.0
-- terrad v0.5.0-beta4
-- bandd v2.0.3
-- iris v1.1.1
-- osmod v2.0.0-rc0
-- regen v1.0.0
-- akash v0.12.2-rc6
-- sentinel v0.7.0 
-- crypto.com chain-main_2.1.0_Linux_x86_64.tar.gz
+- gaiad v6.0.0
+- terrad v0.5.12
+- bandd v2.3.2
+- iris v1.2.1
+- osmod v4.2.0
+- regen v2.1.0
+- akash v0.14.1
+- sentinel v0.8.3 
+- crypto.com chain-main_3.3.3_Linux_x86_64.tar.gz
 - persistenceone v0.1.3
 
 ```shell

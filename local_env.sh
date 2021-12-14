@@ -1,89 +1,90 @@
 git clone https://github.com/informalsystems/ibc-rs
 cd ibc-rs
 git pull
-git checkout v0.6.2
+git checkout v0.9.0
 sudo apt install libssl-dev
 sudo apt install pkg-config
 cargo install ibc-relayer-cli --bin hermes --locked
 cd ..
 rm -r ibc-rs
 
-#cosmos-sdk v0.42.6
+#cosmos-sdk v0.44.3
 git clone https://github.com/cosmos/gaia
 cd gaia
 git pull
-git checkout v5.0.0
+git checkout v6.0.0
 make install
 cd ..
 rm -r gaia
 
-#cosmos-sdk v0.43.0-beta1
+#cosmos-sdk v0.44.5
 git clone https://github.com/terra-money/core
 cd core
 git pull
-git checkout v0.5.0-rc0
+git checkout v0.5.12
 make install
 cd ..
 rm -r core
 
-#cosmos-sdk v0.42.4
+#cosmos-sdk v0.44.2
 git clone https://github.com/irisnet/irishub
 cd irishub
 git pull
-git checkout v1.1.1
+git checkout v1.2.1
 make install
 cd ..
 rm -r irishub
-#cosmos-sdk v0.42.4
+
+#cosmos-sdk v0.44.2
 git clone https://github.com/bandprotocol/chain
 cd chain
 git pull
-git checkout v2.0.3
+git checkout v2.3.2
 make install
 cd ..
 rm -r chain
 
-#cosmos-sdk v0.42.5
+#cosmos-sdk v0.42.10-osmo
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis/
 git pull
-git checkout v2.0.0-rc0
+git checkout v4.2.0
 make install
 cd ..
 rm -r osmosis
 
-#cosmos-sdk v0.42.5
+#cosmos-sdk v0.42.6-sentinel
 git clone https://github.com/sentinel-official/hub
 cd hub/
 git pull
-git checkout v0.7.0
+git checkout v0.8.3
 make install
 cd ..
 rm -r hub
 
-#cosmos-sdk v0.42.4-regen-1
+#cosmos-sdk v0.44.2-regen-1
 git clone https://github.com/regen-network/regen-ledger
 cd regen-ledger/
 git pull
-git checkout v1.0.0
+git checkout v2.1.0
 make install
 cd ..
 rm -r regen-ledger/
 
-#cosmos-sdk 
+#cosmos-sdk v0.41.4-akash-4
 git clone https://github.com/ovrclk/akash
 cd akash/
 git pull
-git checkout v0.12.2-rc6
+git checkout v0.14.1
 make install
 cd ..
 rm -r akash/
 
-#cosmos-sdk v0.42.6
+#cosmos-sdk v0.44.5
 mkdir cro
 cd cro
-curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v2.1.0/chain-main_2.1.0_Linux_x86_64.tar.gz
-tar -zxvf chain-main_2.1.0_Linux_x86_64.tar.gz
+curl -LOJ https://github.com/crypto-org-chain/chain-main/releases/download/v3.3.3/chain-main_3.3.3_Linux_x86_64.tar.gz
+tar -zxvf chain-main_3.3.3_Linux_x86_64.tar.gz
 sudo chmod +x bin/chain-maind
 mv bin/chain-maind ~/goApps/bin/
 cd ..
@@ -212,14 +213,14 @@ rm MNEMONIC.key
 
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46
 do
-        cli=$(gaiad keys add hermes$i --keyring-backend test --output json | jq -r '.')
+        cli=$(gaiad keys add hermes$i --keyring-backend test --output json 2>&1 | jq -r '.')
         MNEMONIC=$(echo $cli | jq -r '.mnemonic')
         echo -n "\"$MNEMONIC\"," >> MNEMONIC.key
         gaiada=$(echo $cli | jq -r '.address')
         bandda=$(echo "$MNEMONIC" | bandd keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
         terrada=$(echo "$MNEMONIC" | terrad keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
         osmosisda=$(echo "$MNEMONIC" | osmosisd keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
-        irisa=$(echo "$MNEMONIC" | iris keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
+        irisa=$(echo "$MNEMONIC" | iris keys add hermes$i --recover --keyring-backend test --output json 2>&1 | jq -r '.address')
         sentinelhuba=$(echo "$MNEMONIC" | sentinelhub keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
         regena=$(echo "$MNEMONIC" | regen keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')
         akasha=$(echo "$MNEMONIC" | akash keys add hermes$i --recover --keyring-backend test --output json| jq -r '.address')

@@ -1,8 +1,26 @@
 [global]
-strategy = 'packets'
 log_level = 'trace'
+
+[mode]
+
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = true
+
+[mode.connections]
+enabled = false
+
+[mode.channels]
+enabled = false
+
+[mode.packets]
+enabled = true
+clear_interval = 600
+clear_on_start = true
 filter = true
-clear_packets_interval = 600
+tx_confirmation = true
+
 
 [[chains]]
 id = 'gaia'
